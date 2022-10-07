@@ -1,0 +1,106 @@
+main {
+  min-height: 85vh;
+  margin-inline-end: 5%;
+  margin-left: 14px;
+  margin-right: 14px;
+}
+.collapse-icon {
+  display: flex !important;
+  flex-basis: auto;
+  flex-direction: row-reverse;
+}
+
+.navbar-brand {
+  margin-left: 30px;
+}
+.navbar-toggler {
+  margin-right: 30px;
+  display: inline-flex;
+}
+.navbar-toggler-icon {
+  margin-top: 12px;
+}
+.form-inline {
+  margin-right: 30px;
+}
+.footer {
+  background: #333 !important;
+  color: #fff;
+}
+.footer-title {
+  text-align: center;
+  padding: 10px;
+}
+.degree {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.degree-title {
+  margin-left: 34px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.card {
+  /* width: 18rem; */
+  margin: 16px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+  padding: 14px 14px 14px 14px;
+  cursor: pointer;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.row {
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: -30px;
+}
+.form-inline {
+  display: flex;
+}
+
+.goback{
+  margin-top: 40px;
+  /* margin-bottom: 20px; */
+}
+
+.stud-id{
+  margin-left: 197px;
+  margin-right: 181px;
+}
+.name{
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card-body{
+  display: contents;
+}
+/* .margin-card{
+margin-left: 6rem} */
+
+.form{
+  position: relative;
+    margin-top: 29%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.form-style{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-bottom: 34px;
+  margin-top: 34px;
+}

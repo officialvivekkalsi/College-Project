@@ -1,0 +1,29 @@
+.navlinks {
+  background-color: #e87d94;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  min-inline-size: max-content;
+}
+.diff {
+  color: white;
+  display: inline-flex;
+  text-decoration: none;
+}
+.navlinksli {
+  color: aliceblue;
+  text-decoration: none;
+  padding: 10px;
+  text-align: center;
+  margin-left: 2px;
+  background-color: rgb(78, 158, 239);
+  border-radius: 10px;
+}
+.navlinksli:hover {
+ background-color: burlywood;
+}
+.navlinksli.active {
+ background-color: burlywood;
+}
+ 
