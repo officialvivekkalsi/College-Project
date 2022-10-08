@@ -26,6 +26,11 @@ function StubyId() {
     return navigate('/')
   }
 
+  const Edit=(e)=>{
+    e.preventDefault()
+    navigate(`edit/${id}`)
+  }
+
   return (
     <div className="stud-id">
       <div className="goback">
@@ -33,7 +38,6 @@ function StubyId() {
           <Button size="lg" variant="outline-dark">Go Back</Button>
         </Link>
       </div>
-      <Row></Row>
       <Row className="my-5 ">
           <Col >
             <img
@@ -79,12 +83,14 @@ function StubyId() {
             </ListGroup.Item>
             <ListGroup.Item>
               <Row >
-              <Col> <h5>Address:{student.Address}</h5> </Col>
+              <Col> <h5>Address:{student.address}</h5> </Col>
               </Row>
             </ListGroup.Item>
           </ListGroup>
             <ListGroup.Item variant="flush">
             <Card body >
+            If you Want to edit student's data then Click here
+            <Button variant="outline-dark" onClick={() => navigate(`../edit/${id}`, { replace: true })} >Edit</Button> 
             If you Want to delete student's data then Click here
               <Button variant="outline-danger" onClick={Delete} >Delete</Button>
             </Card>;

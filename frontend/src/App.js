@@ -6,6 +6,7 @@ import "./Components/index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StubyId from "./Components/StubyId";
 import Post from "./Components/Post";
+import Edit from "./Components/Edit";
 function App() {
   return (
     <div>
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" exact="true" element={<HomeScreen />} />
             <Route path="add-Student/" element={<Post />} />
             <Route path="student/:id" element={<StubyId />} />
+            <Route path="edit/:id" element={<Edit />} />
           </Routes>
         </main>
         <Footer />

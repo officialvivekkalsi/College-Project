@@ -28,7 +28,7 @@ function HomeScreen() {
           <Col md="auto" style={{ display: "contents" }}>
             {studentdata.map((students) => (
               <Card key={students.id} style={{ width: "18rem" }}>
-                <Card.Img variant="top" src={students.image} />
+                <Link to={`student/${students.id}`}><Card.Img variant="top" src={students.image} /></Link>
                 <Card.Body>
                   <Card.Title>
                     <h5 className="card-title">
