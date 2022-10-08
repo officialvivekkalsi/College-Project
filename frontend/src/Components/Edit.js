@@ -4,9 +4,8 @@ import Form from "react-bootstrap/Form";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./index.css";
-//
+
 function Edit() {
-  const [student, setStudent] = useState([]);
   const [name, setName] = useState();
   const [degree, setDegree] = useState();
   const [address, setAddress] = useState();
@@ -22,8 +21,16 @@ function Edit() {
     const response = await axios.get(
       `http://127.0.0.1:8000/student-info/${id}`
     );
-    setStudent(response.data);
-    console.log(response.data);
+    const item = response.data;
+    setName(item.name);
+    setDegree(item.degree);
+    setAddress(item.address);
+    setPin(item.pin);
+    setCountry(item.country);
+    setDob(item.dob);
+    setEmail(item.email);
+    setImage(item.image);
+    setSelfintro(item.selfintro);
   }
 
   React.useEffect(() => {
@@ -31,41 +38,34 @@ function Edit() {
   }, []);
 
   async function Edit(e) {
-    e.preventDefault()
-    const formData = new FormData();  
-    formData.append('name', name);  
-    formData.append('degree', degree);  
-    formData.append('address', address);  
-    formData.append('pin', pin);  
-    formData.append('country', country);  
-    formData.append('dob', dob);  
-    formData.append('email', email);  
-    formData.append('image', image);  
-    formData.append('selfintro', selfintro);  
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("degree", degree);
+    formData.append("address", address);
+    formData.append("pin", pin);
+    formData.append("country", country);
+    formData.append("dob", dob);
+    formData.append("email", email);
+    formData.append("image", image);
+    formData.append("selfintro", selfintro);
     const response = await axios.put(
-      `http://127.0.0.1:8000/student-info/${id}`,formData
+      `http://127.0.0.1:8000/student-info/${id}/`,
+      formData
     );
     console.log(response.data);
-    console.log('edited')
-    // setName(response.data)
-    // setdegree(response.data)
-    // setStudent(response.data)
-    // setStudent(response.data)
-
-    // return navigate(`edit/${id}`)
+    alert("edited");
+    return navigate(`../student/${id}`, { replace: true });
   }
-  //   const Navigate=()=>{
-  //     return navigate(`student/${student.id}`)
-  //   }
   return (
     <div className="edit">
       <Row className="form">
-        <Col className="form-style" style={{ "marginTop": "34px" }} md={4}>
+        <Col className="form-style" style={{ marginTop: "34px" }} md={4}>
           <Form onSubmit={Edit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Name of Student</Form.Label>
               <Form.Control
-                value={student.name}
+                value={name}
                 onChange={(e) => setName(e.target.value)}
                 type="text"
                 placeholder="ex:John"
@@ -74,7 +74,7 @@ function Edit() {
                 <Col md={5}>
                   <Form.Label>Stream of Student</Form.Label>
                   <Form.Control
-                    value={student.degree}
+                    value={degree}
                     onChange={(e) => setDegree(e.target.value)}
                     type="text"
                     placeholder="ex:B.Sc(IT)"
@@ -82,19 +82,25 @@ function Edit() {
                 </Col>
                 <Col md={7}>
                   <Form.Label>Image</Form.Label>
-                  <Form.Control type="file" onChange={(e) => setImage(e.target.files[0])} placeholder="ex:.jpg,.png" />
+                  <Form.Control
+                    type="file"
+                    required
+                    // value={image}
+                    onChange={(e) => setImage(e.target.files[0])}
+                    placeholder="ex:.jpg,.png"
+                  />
                 </Col>
               </Row>
               <Form.Label>Email address</Form.Label>
               <Form.Control
-                value={student.email}
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 placeholder="ex:name@example.com"
               />
               <Form.Label>Address</Form.Label>
               <Form.Control
-                value={student.address}
+                value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 type="text"
                 placeholder="ex:city,country"
@@ -103,7 +109,7 @@ function Edit() {
                 <Col md={4}>
                   <Form.Label>Date of birth</Form.Label>
                   <Form.Control
-                    value={student.dob}
+                    value={dob}
                     onChange={(e) => setDob(e.target.value)}
                     type="date"
                     placeholder="22/2/2000"
@@ -112,7 +118,7 @@ function Edit() {
                 <Col md={4}>
                   <Form.Label>Pin</Form.Label>
                   <Form.Control
-                    value={student.pin}
+                    value={pin}
                     onChange={(e) => setPin(e.target.value)}
                     type="number"
                     placeholder="ex:34223"
@@ -121,7 +127,7 @@ function Edit() {
                 <Col md={4}>
                   <Form.Label>Country</Form.Label>
                   <Form.Control
-                    value={student.country}
+                    value={country}
                     onChange={(e) => setCountry(e.target.value)}
                     type="text"
                     placeholder="ex:india"
@@ -134,7 +140,12 @@ function Edit() {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Self Introduction</Form.Label>
-              <Form.Control value={student.selfintro} as="textarea" rows={3}  onChange={(e) => setSelfintro(e.target.value)}/>
+              <Form.Control
+                value={selfintro}
+                as="textarea"
+                rows={3}
+                onChange={(e) => setSelfintro(e.target.value)}
+              />
             </Form.Group>
             <Button
               style={{ margin: "7px" }}
@@ -143,10 +154,14 @@ function Edit() {
             >
               Save Changes
             </Button>
-          
-              <Button style={{ margin: "7px" }} onClick={()=>navigate(`../student/${student.id}`,{replace:true})} variant="outline-dark">
-                Back to Student Detail
-              </Button>
+
+            <Button
+              style={{ margin: "7px" }}
+              onClick={() => navigate(`../student/${id}`, { replace: true })}
+              variant="outline-dark"
+            >
+              Back to Student Detail
+            </Button>
             <Link to="/">
               <Button style={{ margin: "7px" }} variant="outline-dark">
                 Back to Home

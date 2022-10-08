@@ -26,11 +26,6 @@ function StubyId() {
     return navigate('/')
   }
 
-  const Edit=(e)=>{
-    e.preventDefault()
-    navigate(`edit/${id}`)
-  }
-
   return (
     <div className="stud-id">
       <div className="goback">
