@@ -1,40 +1,63 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import img from '../images/favi1.png'
+import React, {useState} from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import img from "../images/favi1.png";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+
 function Header() {
+  const [keyword, setKeyword] = useState('');
+  const Navigate=useNavigate
+  const Search = (e) => {
+    e.preventDefault();
+    if (keyword){
+      return Navigate(`/?keyword=${keyword}`)
+    }else {
+      // return Navigate(Navigate(Navigation.location.pathname))
+      return 'hello'
+    }
+  };
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <NavLink className="navbar-brand" to="/">
-        <img src={img} alt="" className="src" />
-          Sixty Degree
-        </NavLink>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
+      <Navbar
+        className="navbar navbar-expand-lg navbar-dark bg-dark"
+        expand="lg"
+      >
+        <Container>
+          <NavLink className="navbar-brand" to="/">
+            <img src={img} alt="" className="src" />
+            Sixty Degree
+          </NavLink>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
               <NavLink className="nav-link" to="/">
-                Home 
+                Home
               </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to={`add-Student/`} >
+              <NavLink className="nav-link" to={`add-Student/`}>
                 Add Student
               </NavLink>
-            </li>
-          </ul>
-        </div>
-      </nav>
+            </Nav>
+            <form className="form-inline my-2 my-lg-0 ">
+              <input
+                onSubmit={Search}
+                className="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                value={keyword}
+                onChange={(e)=>setKeyword(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="btn btn-sm btn-outline-light"
+              >
+                Search
+              </button>
+            </form>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </header>
   );
 }
